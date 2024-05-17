@@ -18,11 +18,11 @@ app.get('/blog', (req, res) => {
 
 mongoose.connect('mongodb+srv://wydfaxil07:Aprinov-1428@wydfaxilapi.9k2ck6z.mongodb.net/NODE-Restful-API')
 .then(() => {
-    app.listen(3000, ()=> {
-        console.log('Node API app is running on port 3000')
-    })
     //connection checking
     console.log('Succesfully connected to MongoDB')
+    app.listen(3000, ()=> {
+        console.log('Node API app is running on port 3000')
+    });
 }) .catch((error) =>{
     console.log(error)
 })
