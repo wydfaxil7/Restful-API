@@ -1,4 +1,5 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
 
 //to access the port on browser, we need to make routes
@@ -15,4 +16,12 @@ app.get('/blog', (req, res) => {
 
 app.listen(3000, ()=> {
     console.log('Node API app is running on port 3000')
+})
+
+mongoose.connect('mongodb+srv://wydfaxil07:Aprinov-1428@wydfaxilapi.9k2ck6z.mongodb.net/NODE-Restful-API')
+.then(() => {
+    //connection checking
+    console.log('Succesfully connected to MongoDB')
+}) .catch((error) =>{
+    console.log(error)
 })
