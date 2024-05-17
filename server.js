@@ -7,6 +7,12 @@ app.get('/', (req, res) => {
     res.send('Hello NODE API')
 })
 
+// checking nodemon working
+app.get('/blog', (req, res) => {
+    res.send('Hello blog, My name is DevFaxil')
+    //nodemon working perfectly
+})
+
 app.listen(3000, ()=> {
     console.log('Node API app is running on port 3000')
 })
