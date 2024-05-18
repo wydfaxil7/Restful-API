@@ -42,6 +42,17 @@ app.get('/products', async(req, res) => {
     }
 })
 
+// FETCH data by ID
+app.get('/products/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const product = await Product.findById(id); 
+        res.status(200).json(product);
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
+
 mongoose.connect('mongodb+srv://wydfaxil07:Aprinov-1428@wydfaxilapi.9k2ck6z.mongodb.net/NODE-Restful-API')
 .then(() => {
     //connection checking
