@@ -53,6 +53,23 @@ app.get('/products/:id', async(req, res) => {
     }
 })
 
+// UPDATE data
+app.put('/products/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const product = await Product.findByIdAndUpdate(id, req.body); //req.body is the data that is sent from clients
+        
+        if(!product){
+            return res.status(404).json({message: 'cannot find any product with ID ${id}'});
+        }
+        const updatedProduct = await Product.findById(id);
+        res.status(200).json(updatedProduct);
+
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
+
 mongoose.connect('mongodb+srv://wydfaxil07:Aprinov-1428@wydfaxilapi.9k2ck6z.mongodb.net/NODE-Restful-API')
 .then(() => {
     //connection checking
