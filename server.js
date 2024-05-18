@@ -19,13 +19,26 @@ app.get('/blog', (req, res) => {
 })
 
 // now here is the procedure on how we can use the product model
-app.post('/product', async(req, res) => {
+
+// CREATING data
+app.post('/products', async(req, res) => {
     try {
         const product = await Product.create(req.body)
         res.status(200).json(product);
     } catch (error) {
         console.log(error.message);
         res.status(500).json({message: error.message});
+    }
+})
+
+// FETCH data
+app.get('/products', async(req, res) => {
+    try {
+        const products = await Product.find({}); // it will fetch all products present in database
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({message: error.message})
+
     }
 })
 
