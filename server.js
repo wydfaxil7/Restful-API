@@ -60,11 +60,25 @@ app.put('/products/:id', async(req, res) => {
         const product = await Product.findByIdAndUpdate(id, req.body); //req.body is the data that is sent from clients
         
         if(!product){
-            return res.status(404).json({message: 'cannot find any product with ID ${id}'});
+            return res.status(404).json({message: 'cannot find any product with this ID'});
         }
         const updatedProduct = await Product.findById(id);
         res.status(200).json(updatedProduct);
 
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
+
+// DELETE data by id
+app.delete('/products/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const product = await Product.findByIdAndDelete(id); 
+        if(!product){
+            return res.status(404).json({message: 'cannot find any product with this ID'})
+        }    
+        res.status(200).json(product);
     } catch (error) {
         res.status(500).json({message: error.message})
     }
